@@ -16,8 +16,10 @@ def app():
         gr.Markdown("# Huggingface Download 😀")
         with gr.Row():
             input = gr.Textbox(placeholder="输入 repo_id")
-            # output = gr.Textbox()
-            input.submit(download,input,"text")
+            output = gr.Textbox(label="路径")
+            submit_bt = gr.Button("Run", variant="primary")
+        
+        submit_bt.click(download,input,outputs= output)
 
 
     return demo
