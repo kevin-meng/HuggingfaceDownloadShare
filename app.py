@@ -1,6 +1,10 @@
 import gradio as gr
+from huggingface_hub import snapshot_download
 import bypy
 
+def download(repo_id):
+    out = snapshot_download(repo_id=repo_id)
+    return out
 
 def app():
     with gr.Blocks(
@@ -9,8 +13,13 @@ def app():
             min-height: 300px;
         }"""
     ) as demo:
-        gr.Markdown("# Huggingface Download")
-        
+        gr.Markdown("# Huggingface Download 😀")
+        with gr.Row():
+            input = gr.Textbox(placeholder="输入 repo_id")
+            output = gr.Textbox()
+            input.submit(download,input,output=output)
+
+
     return demo
 
 
