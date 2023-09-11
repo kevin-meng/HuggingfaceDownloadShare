@@ -22,11 +22,11 @@ def upload_by_path(source_path,dest_path):
     )
     return out
 
-def upload_by_file(source_path,dest_path):
+def upload_by_file(source_path):
     bp = ByPy()
     out = bp.upload(
       source_path,
-      path_name
+      source_path.split("/")[-1]
     )
     return out
 
@@ -39,20 +39,37 @@ def app():
             min-height: 300px;
         }"""
     ) as demo:
+
+
+
         gr.Markdown("# Huggingface Download 😀")
+
+
+
+
         with gr.Row():
-            input = gr.Textbox(placeholder="输入 repo_id")
-            output = gr.Textbox(label="路径")
-            submit_bt = gr.Button("Run", variant="primary")
-        
-        submit_bt.click(download,input,outputs= output)
+            with gr.Column():
+                input = gr.Textbox(placeholder="输入 repo_id")
+                submit_bt = gr.Button("下载", variant="primary")
+            with gr.Column():
+                output = gr.Textbox(label="路径")
+
+            
+            submit_bt.click(download,input,outputs= output)
 
         with gr.Row():
             bp = ByPy()
             key = bp.list()
-            gr.Markdown("### 输入上传百度云")
-            submit_bt.click(upload_by_path,[output,out_path.split("/")[0]],outputs= result)
-            input = gr.Textbox(placeholder="结果路径")
+            with gr.Column():
+                gr.Markdown("### 输入上传百度云")
+        with gr.Row():
+            with gr.Column():
+                submit_by = gr.Button("上传", variant="primary")
+                result = gr.Textbox(placeholder="结果路径")
+
+            with gr.Column():
+                pass
+            submit_by.click(upload_by_path,output,outputs= result)
 
     return demo
 
