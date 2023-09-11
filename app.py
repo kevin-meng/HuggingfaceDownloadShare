@@ -40,12 +40,7 @@ def app():
         }"""
     ) as demo:
 
-
-
         gr.Markdown("# Huggingface Download 😀")
-
-
-
 
         with gr.Row():
             with gr.Column():
