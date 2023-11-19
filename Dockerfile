@@ -3,9 +3,7 @@ FROM python:3.11
 
 # 设置工作目录
 WORKDIR /data
-
-# COPY . .
-
+COPY . .
 # 安装依赖项
 RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple 
 
