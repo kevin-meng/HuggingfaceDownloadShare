@@ -1,3 +1,3 @@
-gradio
-bypy
-huggingface_hub 
+gradio==4.4.1
+bypy==1.8.2
+huggingface_hub==0.19.4
