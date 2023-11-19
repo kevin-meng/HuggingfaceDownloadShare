@@ -42,23 +42,35 @@ def download_file(repo_id,filenames):
 
 
 
-def upload_by_path(source_path,dest_path):
+def upload_by_file(source_path):
     bp = ByPy()
-    out = bp.syncup(
+    dest_path = source_path.split("/")[-1]  # 文件名
+    out = bp.upload(
       source_path,
       dest_path
     )
-    # out = "test"
-    
     return out
-
-def upload_by_file(source_path):
+    
+def upload_by_path(source_path,compress=True):
     bp = ByPy()
-    out = bp.upload(
+    # 创建目录
+    dest_path = source_path.split("/")[-1]
+    # 压缩
+    if compress:
+      print("分卷压缩....")
+      tar_path =f"{os.getcwd()}/tar/{dest_path}"
+      print(tar_path)
+      os.system(f"mkdir -p {tar_path}")
+      os.system(f"zip -s 4000M {tar_path}/{dest_path}.zip {source_path}/*")
+      source_path = tar_path
+    print("上传百度云....")
+    bp.mkdir(dest_path)
+    # 同步目录
+    out = bp.syncup(
       source_path,
-      source_path.split("/")[-1]
+      dest_path,
+      deleteremote=True
     )
-    # out = "test"
     return out
 
 
@@ -97,7 +109,7 @@ def app():
             bp = ByPy()
             key = bp.list()
             with gr.Column():
-                gr.Markdown("### 输入上传百度云")
+                gr.Markdown("# 上传百度云 🐳")
         with gr.Row():
             with gr.Column():
                 submit_by = gr.Button("上传", variant="primary")
@@ -105,7 +117,7 @@ def app():
 
             with gr.Column():
                 pass
-            submit_by.click(upload_by_file,output,outputs= result)
+            submit_by.click(upload_by_path,output,outputs= result)
 
     return demo
 
