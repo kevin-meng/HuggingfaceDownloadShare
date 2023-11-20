@@ -34,12 +34,9 @@
 ## 方法二 (play-with-dcoker)
 
 ```
-docker pull mengkevin/gradio_hg:latest
-
-docker run -it mengkevin/gradio_hg:latest
+bash run.sh
 ```
 
 ## 其他
 如果模型特别大，建议直接使用 AWS 的 [EC2](https://signin.aws.amazon.com/)，按时付费，用完即关。
 
-![](pic/page.png)
