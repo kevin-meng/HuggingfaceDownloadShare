@@ -14,6 +14,9 @@
 2. 申请百度网盘开发者，上传百度网盘，然后国内下载。
     （上传速度很快）
 
+## 更新记录
+- 2023-11-20  支持选择文件下载
+![](pic/pic3.png)
 
 ### 共享机制
 如果你愿意分享 你的百度网盘地址，可提交 issue 
@@ -35,5 +38,8 @@ docker pull mengkevin/gradio_hg:latest
 
 docker run -it mengkevin/gradio_hg:latest
 ```
+
+## 其他
+如果模型特别大，建议直接使用 AWS 的 [EC2](https://signin.aws.amazon.com/)，按时付费，用完即关。
 
 ![](pic/page.png)
