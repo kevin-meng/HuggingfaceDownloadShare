@@ -1,3 +1,7 @@
+### 🎙️ Note：目前国内可以通过 [https://hf-mirror.com/](https://hf-mirror.com/) 访问huggingface, 模型数据很全，官网有具体使用方法
+
+
+-----------------
 # HuggingfaceDownloadShare
 中国如何下载huggingface 模型并共享链接
 
